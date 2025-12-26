@@ -26,8 +26,8 @@ func or(channels ...<-chan interface{}) <-chan interface{} {
 
 	orDone := make(chan interface{})
 
+	defer close(orDone)
 	go func() {
-		defer close(orDone)
 		switch len(channels) {
 		case 2:
 			select {
